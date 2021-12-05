@@ -3,6 +3,8 @@ import './App.css';
 import EmotionTable from './EmotionTable.js';
 import React from 'react';
 
+document.title = "Sentiment Analyzer"
+
 class App extends React.Component {
   /*
   We are setting the component as a state named innercomp.
@@ -49,13 +51,16 @@ class App extends React.Component {
         let output = data.label;
         let color = "white"
         switch(output) {
-          case "positive": color = "black";break;
-          case "negative": color = "black";break;
-          default: color = "black";
+          case "positive": color = "green";break;
+          case "negative": color = "red";break;
+          default: color = "yellow";
         }
         output = <div style={{color:color,fontSize:20}}>{output}</div>
         this.setState({sentimentOutput:output});
-      })});
+      },
+      function(err){console.log("err1")})
+    }, function(err){console.log("err2")}
+      );
   }
 
   sendForEmotionAnalysis = () => {
